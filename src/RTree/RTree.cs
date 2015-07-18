@@ -204,7 +204,7 @@ namespace Enyim.Collections
 			}
 
 			// adjust bboxes along the insertion path
-			AdjutsParentBounds(envelope, insertPath, level);
+			AdjustParentBounds(envelope, insertPath, level);
 		}
 
 		private static int CombinedArea(Envelope what, Envelope with)
@@ -456,7 +456,7 @@ namespace Enyim.Collections
 			return retval;
 		}
 
-		private static void AdjutsParentBounds(Envelope bbox, List<RTreeNode<T>> path, int level)
+		private static void AdjustParentBounds(Envelope bbox, List<RTreeNode<T>> path, int level)
 		{
 			// adjust bboxes along the given tree path
 			for (var i = level; i >= 0; i--)
