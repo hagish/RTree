@@ -416,24 +416,26 @@ namespace Enyim.Collections
 
 		private void CondenseNodes(IList<RTreeNode<T>> path)
 		{
+            var count = path.Count;
+
 			// go through the path, removing empty nodes and updating bboxes
-			for (var i = path.Count - 1; i >= 0; i--)
+			for (var i = 0; i < count; i++)
 			{
-				if (path[i].Children.Count == 0)
+                if (path[i].Children.Count == 0)
 				{
-					if (i == 0)
+                    if (i == count - 1)
 					{
-						Clear();
+                        Clear();
 					}
 					else
 					{
-						var siblings = path[i - 1].Children;
-						siblings.Remove(path[i]);
-					}
+                        var siblings = path[i + 1].Children;
+                        siblings.Remove(path[i]);
+                    }
 				}
 				else
 				{
-					RefreshEnvelope(path[i]);
+                    RefreshEnvelope(path[i]);
 				}
 			}
 		}
